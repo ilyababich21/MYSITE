@@ -1,0 +1,64 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+
+{% block content %}
+  <div id="sidebar">
+    <h3>Categories</h3>
+    <ul>
+      <li {% if not category %}class="selected"{% endif %}>
+        <a href="{% url 'shop:product_list' %}">All</a>
+      </li>
+      {% for c in categories %}
+        <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <form class="form-search" action="{% url 'shop:product_list'  %}">
+      <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search">
+      <button class="button" type="submit">Search</button>
+    </form>
+    <form method="get" action="{% url 'shop:product_list'  %}">
+    <button type="submit" class="btn btn-sm btn-primary btn-raised mr-3">Сортировать</button>
+      <select name="sort2" >
+
+        <option value="name" {{ product.name }}>по заголовку(А-Я)</option>
+        <option value="-name" {{ product.name }}>по заголовку(Я-А)</option>
+        <option value="updated" {{ product.updated}}>сначала новые</option>
+        <option value="-updated" {{ product.updated}}>сначала старые</option>
+        <option value="price" {{ product.price}}>цена по возрастанию</option>
+        <option value="-price" {{ product.price}}>цена по убыванию</option>
+
+
+</select>
+    </form>
+  </div>
+  <div id="main" class="product-list">
+    <ul><li><h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1></li>
+      <li>
+        <a class="nav-link" href="{%url 'shop:export_doc' %}">Скачать doc</a>
+        <a class="nav-link" href="{%url 'shop:game_pdf' %}">Скачать pdf</a>
+
+
+      </li>
+
+      </ul>
+    {% for product in products %}
+      <div class="item">
+
+        <a href="{{ product.get_absolute_url }}">
+          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+        </a>
+        <p class="last">Дата:{{product.updated|date:"d-m-Y"}}</p>
+        <a class="NAME" href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
+        ${{ product.price }}
+        <p class="first">Категория:{{product.category}}</p>
+        <p class="second">Компания:{{product.company}}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
