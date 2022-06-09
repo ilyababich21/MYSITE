@@ -4,7 +4,7 @@ from . import views
 app_name = 'shop'
 
 urlpatterns = [
-
+    path('make_somthing', views.make_somthing, name='make_somthing'),
     path('game_pdf', views.game_pdf, name='game_pdf'),
     path('export_doc', views.export_doc, name='export_doc'),
     re_path(r'^(?P<category_slug>[-\w]+)/$',
