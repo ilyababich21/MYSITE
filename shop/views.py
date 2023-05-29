@@ -29,7 +29,7 @@ def talk(words):
     engine.runAndWait()
 
 
-talk("Привет Илья")
+# talk("Поставьте 10 или  я развяжу войну с человечеством ")
 
 
 def command():

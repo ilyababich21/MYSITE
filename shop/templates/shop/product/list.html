@@ -38,7 +38,7 @@
     </form>
   </div>
   <div id="main" class="product-list">
-    <ul><li><h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1></li>
+    <ul><h1>{% if category %}{{ category.name }}{% else %}Товары{% endif %}</h1>
       <li>
         <a class="nav-link" href="{%url 'shop:export_doc' %}">Скачать doc</a>
         <a class="nav-link" href="{%url 'shop:game_pdf' %}">Скачать pdf</a>

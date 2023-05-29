@@ -148,6 +148,13 @@ div#header {}
     float:right;
     padding-top:4px;
 }
+#subheader .podbor {
+    text-align:center;
+    padding-top:10px;
+    color:#333;
+    font-size:50px
+
+}
 
 #content {
     padding:0 100px;
@@ -235,7 +242,7 @@ div#header {}
 
 .order-info {
     float:right;
-    width:300px;
+    width:150px;
     background:#efefef;
     padding:10px 20px;
     color:#333;

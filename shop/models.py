@@ -31,11 +31,27 @@ class Company(models.Model):
     def __str__(self):
         return self.name
 
+class Critery(models.Model):
+    name = models.CharField(max_length=200, db_index=True)
 
+    pora_goda = models.CharField(max_length=200, )
+    vremya_sutok = models.CharField(max_length=200, )
+    vid_meropriatia = models.CharField(max_length=200, )
+    # name = models.CharField(max_length=200, db_index=True)
+    # name = models.CharField(max_length=200, db_index=True)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'Критерий'
+        verbose_name_plural = 'Критерии'
+
+    def __str__(self):
+        return self.name+'  '+self.pora_goda+"   "+self.vid_meropriatia
 
 
 
 class Product(models.Model):
+    critery=models.ForeignKey(Critery, related_name='products', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     company = models.ForeignKey(Company, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)

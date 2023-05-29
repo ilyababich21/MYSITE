@@ -10,23 +10,28 @@
 </head>
 <body>
 <div id="header">
-    <a href="/" class="logo">Shlyapniky</a>
+    <a href="/" class="logo">Склад</a>
 </div>
 <div id="subheader">
+
     <div class="cart">
+
     {% with total_items=cart|length %}
         {% if cart|length > 0 %}
-            Your cart:
+            Товаров к отправке:
             <a href="{% url 'cart:cart_detail' %}">
                 {{ total_items }} item{{ total_items|pluralize }},
-                ${{ cart.get_total_price }}
+                Общая стоимость: ${{ cart.get_total_price }}
             </a>
         {% else %}
-            Корзина пуста
+            Дбавьте товары для отправки
         {% endif %}
     {% endwith %}
 
 </div>
+    <div class="podbor">
+        <a href="{% url 'podbor:podbor_detail' %}">ПОДОБРАТЬ ОБРАЗ</a>
+    </div>
     <div >
         <a class="hello" href="{% url 'home' %}">Привет, {{ user.username|default:'Гость' }}</a>
     </div>

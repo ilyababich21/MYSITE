@@ -88,10 +88,10 @@ def export_to_xls(queryset, headers, columns, filename='file_name'):
 def save_execl(self, request, queryset):
         filename = 'media/{0}_{1}.xls'.format('amounts', datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
         headers = ['id', 'user','first_name', 'last_name', 'email',
-                    'address', 'phone', 'city', 'paid',
+                    'address',  'city', 'paid',
                     'created', 'updated']
         columns = ['id', 'user', 'first_name','last_name', 'email',
-                    'address', 'phone', 'city', 'paid',
+                    'address',  'city', 'paid',
                     'created', 'updated']
         return export_to_xls(queryset, headers, columns, filename)
 
@@ -99,7 +99,7 @@ save_execl.short_description = "Экспорт в Excel"
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['id', 'user', 'first_name','last_name', 'email',
-                    'address', 'phone', 'city', 'paid',
+                    'address', 'city', 'paid',
                     'created', 'updated']
     list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline]
